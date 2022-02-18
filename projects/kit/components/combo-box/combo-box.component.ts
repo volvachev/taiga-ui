@@ -94,7 +94,7 @@ export class TuiComboBoxComponent<T>
 
     @ContentChild(TuiDataListDirective, {read: TemplateRef})
     readonly datalist: PolymorpheusContent<
-        TuiContextWithImplicit<TuiActiveZoneDirective>
+        TuiContextWithImplicit<TuiActiveZoneDirective> | Record<any, any>
     > = '';
 
     open = false;
@@ -143,14 +143,8 @@ export class TuiComboBoxComponent<T>
     }
 
     @tuiPure
-    computeContext(
-        $implicit: T | null,
-        active: boolean,
-    ): TuiValueContentContext<T | null> {
-        return {
-            $implicit,
-            active,
-        };
+    computeContext($implicit: T, active: boolean): TuiValueContentContext<T> {
+        return {$implicit, active};
     }
 
     onActiveZone(active: boolean) {
@@ -174,7 +168,7 @@ export class TuiComboBoxComponent<T>
         this.updateValue(item);
     }
 
-    onFieldKeyDownEnter(event: KeyboardEvent) {
+    onFieldKeyDownEnter(event: Event | KeyboardEvent) {
         if (this.open) {
             event.preventDefault();
         }

@@ -131,7 +131,7 @@ export class TuiInputRangeComponent
         }
     }
 
-    onKeyDownArrowUpLeft(event: KeyboardEvent) {
+    onKeyDownArrowUpLeft(event: Event | KeyboardEvent) {
         if (this.readOnly) {
             return;
         }
@@ -140,7 +140,7 @@ export class TuiInputRangeComponent
         this.processStep(true, false);
     }
 
-    onKeyDownArrowDownLeft(event: KeyboardEvent) {
+    onKeyDownArrowDownLeft(event: Event | KeyboardEvent) {
         if (this.readOnly) {
             return;
         }
@@ -149,7 +149,7 @@ export class TuiInputRangeComponent
         this.processStep(false, false);
     }
 
-    onKeyDownArrowUpRight(event: KeyboardEvent) {
+    onKeyDownArrowUpRight(event: Event | KeyboardEvent) {
         if (this.readOnly) {
             return;
         }
@@ -158,7 +158,7 @@ export class TuiInputRangeComponent
         this.processStep(true, true);
     }
 
-    onKeyDownArrowDownRight(event: KeyboardEvent) {
+    onKeyDownArrowDownRight(event: Event | KeyboardEvent) {
         if (this.readOnly) {
             return;
         }

@@ -88,7 +88,7 @@ export class TuiMultiSelectComponent<T>
 
     @Input()
     @tuiDefaultProp()
-    stringify: TuiItemsHandlers<T>['stringify'] = this.itemsHandlers.stringify;
+    stringify: TuiItemsHandlers<T>['stringify'] | null = this.itemsHandlers.stringify;
 
     @Input()
     @tuiDefaultProp()
@@ -122,7 +122,7 @@ export class TuiMultiSelectComponent<T>
 
     @ContentChild(TuiDataListDirective, {read: TemplateRef})
     readonly datalist: PolymorpheusContent<
-        TuiContextWithImplicit<TuiActiveZoneDirective>
+        TuiContextWithImplicit<TuiActiveZoneDirective> | Record<any, any>
     > = '';
 
     open = false;
@@ -232,7 +232,7 @@ export class TuiMultiSelectComponent<T>
         this.updateHovered(hovered);
     }
 
-    onSpace(event: KeyboardEvent) {
+    onSpace(event: Event | KeyboardEvent) {
         if (!this.editable) {
             event.preventDefault();
         }
@@ -252,7 +252,7 @@ export class TuiMultiSelectComponent<T>
         this.updateSearch(null);
     }
 
-    onEnter(event: KeyboardEvent) {
+    onEnter(event: Event | KeyboardEvent) {
         const {value} = this;
         const options = this.accessor ? this.accessor.getOptions() : [];
 

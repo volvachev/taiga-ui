@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import {TuiHandler} from '@taiga-ui/cdk';
 import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
-import {Subject} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
 import {distinctUntilChanged, map, startWith} from 'rxjs/operators';
 
 import {TuiTreeChildrenDirective} from '../../directives/tree-children.directive';
@@ -36,7 +36,7 @@ export class TuiTreeComponent<T> implements DoCheck {
     private readonly check$ = new Subject<void>();
 
     @Input()
-    value!: T;
+    declare value: T | readonly T[];
 
     @ViewChild(TuiTreeItemComponent)
     readonly item?: TuiTreeItemComponent;
@@ -44,9 +44,9 @@ export class TuiTreeComponent<T> implements DoCheck {
     @ViewChild(TuiTreeComponent)
     readonly child?: TuiTreeComponent<T>;
 
-    readonly children$ = this.check$.pipe(
+    readonly children$: Observable<readonly T[]> = this.check$.pipe(
         startWith(null),
-        map(() => this.handler(this.value)),
+        map(() => this.handler(this.value as T)),
         distinctUntilChanged(),
     );
 
@@ -57,7 +57,8 @@ export class TuiTreeComponent<T> implements DoCheck {
     ) {}
 
     @Input()
-    content: PolymorpheusContent<TuiTreeContext<T>> = ({$implicit}) => String($implicit);
+    content: PolymorpheusContent<TuiTreeContext<T | readonly T[]>> = ({$implicit}) =>
+        String($implicit);
 
     ngDoCheck() {
         this.check$.next();

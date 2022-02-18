@@ -404,7 +404,9 @@ export class TuiInputCardGroupedComponent
         this.focusInput();
     }
 
-    onScroll(element: HTMLElement) {
+    onScroll(event: Event) {
+        const element: HTMLElement = event.currentTarget as HTMLElement;
+
         element.scrollLeft = 0;
     }
 

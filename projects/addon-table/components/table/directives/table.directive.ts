@@ -43,7 +43,7 @@ export class TuiTableDirective<T> extends TuiController {
     readonly directionChange = new EventEmitter<-1 | 1>();
 
     @Output()
-    readonly sorterChange = new EventEmitter<TuiComparator<T> | null>();
+    readonly sorterChange = new EventEmitter<TuiComparator<T>>();
 
     constructor(
         @Inject(IntersectionObserverService)

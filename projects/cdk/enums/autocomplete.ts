@@ -51,7 +51,44 @@ export const enum TuiTransactionAutofillName {
     TransactionCurrency = 'transaction-currency',
     TransactionAmount = 'transaction-amount',
 }
+
+// TODO: after upgrade to TS 4.1 change it line to
+// export type TuiAutofillFieldNameLiteral = `${TuiCreditCardAutofillName | TuiNameAutofillName | ...}`;
+export type TuiAutofillFieldNameLiteral =
+    | 'off'
+    // TuiCreditCardAutofillName
+    | 'cc-name'
+    | 'cc-number'
+    | 'cc-csc'
+    | 'cc-exp-month'
+    | 'cc-exp-year'
+    | 'cc-exp'
+    | 'cc-type'
+    // TuiNameAutofillName
+    | 'name'
+    | 'given-name'
+    | 'additional-name'
+    | 'family-name'
+    // TuiAccountAutofillName
+    | 'username'
+    | 'new-password'
+    | 'current-password'
+    // TuiEmailAutofillName
+    | 'email'
+    // TuiAddressAutofillName
+    | 'street-address'
+    | 'postal-code'
+    | 'country-name'
+    // TuiPhoneAutofillName
+    | 'tel'
+    // TuiDateAutofillName
+    | 'bday'
+    // TuiTransactionAutofillName
+    | 'transaction-currency'
+    | 'transaction-amount';
+
 export type TuiAutofillFieldName =
+    | TuiAutofillFieldNameLiteral
     | TuiCreditCardAutofillName
     | TuiNameAutofillName
     | TuiAccountAutofillName

@@ -72,7 +72,7 @@ export class TuiSelectComponent<T>
 
     @ContentChild(TuiDataListDirective, {read: TemplateRef})
     readonly datalist: PolymorpheusContent<
-        TuiContextWithImplicit<TuiActiveZoneDirective>
+        TuiContextWithImplicit<TuiActiveZoneDirective> | Record<any, any>
     > = '';
 
     constructor(
@@ -119,10 +119,7 @@ export class TuiSelectComponent<T>
     }
 
     @tuiPure
-    computeContext(
-        $implicit: T | null,
-        active: boolean,
-    ): TuiValueContentContext<T | null> {
+    computeContext($implicit: T, active: boolean): TuiValueContentContext<T> {
         return {$implicit, active};
     }
 

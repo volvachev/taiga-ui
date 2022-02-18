@@ -102,7 +102,7 @@ export abstract class AbstractTuiDropdown
     }
 
     @tuiPure
-    protected toggleDropdown(value: boolean) {
+    protected toggleDropdown(value: boolean | '') {
         if (value) {
             this.openDropdownBox();
         } else {

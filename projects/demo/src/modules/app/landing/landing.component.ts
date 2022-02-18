@@ -56,9 +56,11 @@ export class LandingComponent {
         });
     }
 
-    stop(e?: KeyboardEvent) {
-        if (e && (e.key === 'ArrowDown' || e.key === 'ArrowUp')) {
-            e.stopPropagation();
+    stop(e?: Event | KeyboardEvent) {
+        const event: KeyboardEvent | undefined = e as KeyboardEvent;
+
+        if (event?.key === 'ArrowDown' || event?.key === 'ArrowUp') {
+            event.stopPropagation();
         }
     }
 }

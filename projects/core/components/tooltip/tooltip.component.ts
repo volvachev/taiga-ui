@@ -27,7 +27,7 @@ export class TuiTooltipComponent {
 
     @Input()
     @tuiDefaultProp()
-    content: PolymorpheusContent = '';
+    content: PolymorpheusContent | null = '';
 
     @Input()
     @tuiDefaultProp()

@@ -70,9 +70,9 @@ export class ExampleTuiInputRangeComponent extends AbstractExampleTuiControl {
         },
     ];
 
-    pluralize = null;
+    pluralize: TuiPluralize | Record<string, string> | null = null;
 
-    segmentsPluralize = null;
+    segmentsPluralize: Record<string, string> | TuiPluralize | null = null;
 
     minLabelVariants: readonly string[] = ['', 'Nothing'];
 
@@ -84,5 +84,5 @@ export class ExampleTuiInputRangeComponent extends AbstractExampleTuiControl {
 
     keyStepsVariants: readonly TuiKeySteps[] = [[[50, 1000]]];
 
-    keySteps = null;
+    keySteps: TuiKeySteps | null = null;
 }

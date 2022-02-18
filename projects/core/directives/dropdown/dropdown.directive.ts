@@ -34,7 +34,7 @@ export class TuiDropdownDirective
     implements TuiDropdown, AfterViewChecked, OnDestroy
 {
     @Input('tuiDropdown')
-    set open(value: boolean) {
+    set open(value: boolean | '') {
         this.toggleDropdown(value);
     }
 

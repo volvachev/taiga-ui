@@ -37,7 +37,7 @@ const databaseMockData: readonly User[] = [
     encapsulation,
 })
 export class TuiMultiSelectExample2 {
-    readonly search$ = new Subject<string>();
+    readonly search$ = new Subject<string | null>();
 
     readonly items$: Observable<readonly User[] | null> = this.search$.pipe(
         filter(value => value !== null),
@@ -49,16 +49,18 @@ export class TuiMultiSelectExample2 {
 
     readonly testValue = new FormControl([databaseMockData[0]]);
 
-    onSearchChange(searchQuery: string) {
+    onSearchChange(searchQuery: string | null) {
         this.search$.next(searchQuery);
     }
 
     /**
      * Server request emulation
      */
-    private serverRequest(searchQuery: string): Observable<readonly User[]> {
+    private serverRequest(searchQuery: string | null): Observable<readonly User[]> {
         const result = databaseMockData.filter(user =>
-            user.toString().toLowerCase().includes(searchQuery.toLowerCase()),
+            searchQuery
+                ? user.toString().toLowerCase().includes(searchQuery.toLowerCase())
+                : user,
         );
 
         return of(result).pipe(delay(Math.random() * 1000 + 500));

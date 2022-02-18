@@ -61,7 +61,9 @@ export class TuiHostedDropdownComponent implements TuiFocusableElementAccessor {
 
     @Input()
     @tuiDefaultProp()
-    content: PolymorpheusContent<TuiContextWithImplicit<TuiActiveZoneDirective>> = '';
+    content: PolymorpheusContent<
+        TuiContextWithImplicit<TuiActiveZoneDirective> | Record<any, any>
+    > = '';
 
     @Input()
     @tuiDefaultProp()
@@ -131,7 +133,7 @@ export class TuiHostedDropdownComponent implements TuiFocusableElementAccessor {
     }
 
     @HostListener('keydown.esc', ['$event'])
-    onKeyDownEsc(event: KeyboardEvent) {
+    onKeyDownEsc(event: Event | KeyboardEvent) {
         if (!this.canOpen || !this.open) {
             return;
         }

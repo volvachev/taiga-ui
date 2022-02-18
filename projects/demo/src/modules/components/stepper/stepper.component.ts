@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {changeDetection} from '@demo/emulate/change-detection';
 import {TuiOrientationT} from '@taiga-ui/core';
+import {TuiStepState} from '@taiga-ui/kit';
 
 import {default as example1Html} from '!!raw-loader!./examples/1/index.html';
 import {default as example1Ts} from '!!raw-loader!./examples/1/index.ts';
@@ -40,7 +41,7 @@ export class ExampleTuiStepperComponent {
 
     icon = this.iconVariants[0];
 
-    readonly stateVariants = ['normal', 'pass', 'error'] as const;
+    readonly stateVariants = [TuiStepState.Normal, TuiStepState.Pass, TuiStepState.Error];
 
-    state = this.stateVariants[0];
+    state: TuiStepState = this.stateVariants[0];
 }

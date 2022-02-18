@@ -69,7 +69,7 @@ export class TuiPieChartComponent {
 
     @Input()
     @tuiDefaultProp()
-    activeItemIndex = NaN;
+    activeItemIndex: number | null = NaN;
 
     @Output()
     activeItemIndexChange = new EventEmitter<number>();

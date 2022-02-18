@@ -106,7 +106,8 @@ export class TuiDataListComponent<T> implements TuiDataListAccessor<T> {
             .filter(isPresent);
     }
 
-    onFocus(element: HTMLElement, top: boolean) {
+    onFocus(event: Event, top: boolean) {
+        const element: HTMLElement = event.target as HTMLElement;
         const {elements} = this;
 
         moveFocus(top ? -1 : elements.length, elements, top ? 1 : -1);

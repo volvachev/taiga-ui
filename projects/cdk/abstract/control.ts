@@ -108,8 +108,8 @@ export abstract class AbstractTuiControl<T>
         );
     }
 
-    get computedName(): string | null {
-        return this.controlName?.toString() ?? null;
+    get computedName(): string {
+        return this.controlName?.toString() ?? '';
     }
 
     protected get controlName(): string | null {

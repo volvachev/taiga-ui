@@ -128,7 +128,9 @@ export class TuiTabsWithMoreComponent implements AfterViewInit {
         this.updateActiveItemIndex(index);
     }
 
-    onArrowRight(element: HTMLElement) {
+    onArrowRight(event: Event | KeyboardEvent) {
+        const element: HTMLElement = event.target as HTMLElement;
+
         if (isNativeFocused(element)) {
             this.focusMore();
         }
@@ -149,7 +151,9 @@ export class TuiTabsWithMoreComponent implements AfterViewInit {
         }
     }
 
-    onWrapperArrow(button: HTMLButtonElement, wrapper: HTMLElement, prev: boolean) {
+    onWrapperArrow(event: Event, wrapper: HTMLElement, prev: boolean) {
+        const button: HTMLButtonElement = event.target as HTMLButtonElement;
+
         const target = getClosestFocusable(button, prev, wrapper);
 
         if (target) {

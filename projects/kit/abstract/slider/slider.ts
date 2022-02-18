@@ -226,22 +226,22 @@ export abstract class AbstractTuiSlider<T>
         this.pointerDown$.complete();
     }
 
-    onMouseDown(event: TuiEventWith<MouseEvent, HTMLElement>) {
+    onMouseDown(event: MouseEvent) {
         if (this.disabled) {
             return;
         }
 
         event.preventDefault();
-        this.pointerDown$.next(event);
+        this.pointerDown$.next(event as TuiEventWith<MouseEvent, HTMLElement>);
     }
 
-    onTouchStart(event: TuiEventWith<TouchEvent, HTMLElement>) {
+    onTouchStart(event: TouchEvent) {
         if (this.disabled) {
             return;
         }
 
         event.preventDefault();
-        this.pointerDown$.next(event);
+        this.pointerDown$.next(event as TuiEventWith<TouchEvent, HTMLElement>);
     }
 
     decrement(right: boolean) {

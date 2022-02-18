@@ -3,8 +3,8 @@ import {PolymorpheusContent} from '@tinkoff/ng-polymorpheus';
 
 import {TuiSheet} from './sheet';
 
-export interface TuiSheetOptions<I = undefined, O = unknown> {
-    readonly image: PolymorpheusContent<TuiSheet<O, I>>;
+export interface TuiSheetOptions<I = undefined, T = unknown> {
+    readonly image: PolymorpheusContent<TuiSheet<T, I>>;
     readonly imageSlide: boolean;
     readonly stops: readonly string[];
     readonly initial: number;

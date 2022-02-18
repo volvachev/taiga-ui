@@ -4,10 +4,10 @@ import {Observable, Observer} from 'rxjs';
 
 import {TuiSheetOptions} from './sheet-options';
 
-export interface TuiSheet<O, I = undefined>
-    extends TuiSheetOptions<I>,
-        TuiContextWithImplicit<Observer<O>> {
-    readonly content: PolymorpheusContent<TuiSheet<O, I>>;
+export interface TuiSheet<T, I = undefined>
+    extends TuiSheetOptions<I, T>,
+        TuiContextWithImplicit<Observer<T>> {
+    readonly content: PolymorpheusContent<TuiSheet<T, I>>;
     readonly scroll$: Observable<number>;
-    completeWith(value: O): void;
+    completeWith(value: T): void;
 }

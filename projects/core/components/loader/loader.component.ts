@@ -50,13 +50,13 @@ export class TuiLoaderComponent {
 
     @Input()
     @tuiRequiredSetter()
-    set showLoader(value: boolean) {
+    set showLoader(value: boolean | null) {
         // @bad TODO: https://github.com/angular/angular/issues/32083 think of a better way
         if (value && this.focused) {
             blurNativeFocused(this.documentRef);
         }
 
-        this.loading = value;
+        this.loading = value ?? false;
     }
 
     @HostBinding('class._loading')

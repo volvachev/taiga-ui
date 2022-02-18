@@ -2,8 +2,9 @@
     *ngIf="items; else loading"
     [emptyContent]="emptyContent"
 >
+    <!-- TODO: need fix type of item - T | T[] -->
     <button
-        *ngFor="let item of items"
+        *ngFor="let item of $any(items)"
         #elementRef="elementRef"
         tuiElement
         tuiOption

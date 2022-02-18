@@ -1,14 +1,19 @@
 import {
     ChangeDetectionStrategy,
     Component,
-    ElementRef,
     forwardRef,
     Inject,
     Input,
     QueryList,
     ViewChildren,
 } from '@angular/core';
-import {EMPTY_QUERY, isNativeFocused, isPresent, tuiDefaultProp} from '@taiga-ui/cdk';
+import {
+    EMPTY_QUERY,
+    isNativeFocused,
+    isPresent,
+    tuiDefaultProp,
+    TuiElementDirective,
+} from '@taiga-ui/cdk';
 import {
     TUI_DATA_LIST_ACCESSOR,
     TuiDataListAccessor,
@@ -55,17 +60,17 @@ export class TuiDataListWrapperComponent<T> implements TuiDataListAccessor<T> {
 
     constructor(
         @Inject(TUI_ITEMS_HANDLERS)
-        private readonly itemsHandlers: TuiItemsHandlers<T>,
+        private readonly itemsHandlers: TuiItemsHandlers<T | T[]>,
     ) {}
 
     @Input()
     @tuiDefaultProp()
-    itemContent: PolymorpheusContent<TuiValueContentContext<T>> = ({$implicit}) =>
+    itemContent: PolymorpheusContent<TuiValueContentContext<T>> | null = ({$implicit}) =>
         this.itemsHandlers.stringify($implicit);
 
     getContext(
         $implicit: T,
-        {nativeElement}: ElementRef<HTMLElement>,
+        {nativeElement}: TuiElementDirective,
     ): TuiValueContentContext<T> {
         return {$implicit, active: isNativeFocused(nativeElement)};
     }
