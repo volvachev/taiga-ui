@@ -1,5 +1,6 @@
 import {
     ChangeDetectionStrategy,
+    ChangeDetectorRef,
     Component,
     ElementRef,
     EventEmitter,
@@ -16,7 +17,7 @@ import {
 import {TuiEditor} from '@taiga-ui/addon-editor/abstract';
 import {defaultEditorColors, defaultEditorTools} from '@taiga-ui/addon-editor/constants';
 import {TuiTiptapEditorService} from '@taiga-ui/addon-editor/directives';
-import {TuiEditorTool} from '@taiga-ui/addon-editor/enums';
+import {TuiEditorGroupTools, TuiEditorTool} from '@taiga-ui/addon-editor/enums';
 import {TUI_EDITOR_TOOLBAR_TEXTS, TUI_IMAGE_LOADER} from '@taiga-ui/addon-editor/tokens';
 import {
     EMPTY_QUERY,
@@ -71,8 +72,12 @@ export class TuiToolbarNewComponent {
     readonly attachClicked = new EventEmitter<void>();
 
     readonly TuiEditorTool: typeof TuiEditorTool = TuiEditorTool;
+    readonly TuiEditorGroupTools: typeof TuiEditorGroupTools = TuiEditorGroupTools;
 
     toolsSet: Set<TuiEditorTool> = new Set(defaultEditorTools);
+    toolsSetInDropdown: Set<TuiEditorTool | TuiEditorGroupTools> = new Set();
+
+    open = false;
 
     @Input()
     @tuiDefaultProp(toolsAssertion, 'Attach and TeX are not yet implemented in Editor')
@@ -89,6 +94,7 @@ export class TuiToolbarNewComponent {
         private readonly imageLoader: TuiHandler<File, Observable<string>>,
         @Inject(TUI_EDITOR_TOOLBAR_TEXTS)
         readonly texts$: Observable<LanguageEditor['toolbarTools']>,
+        @Inject(ChangeDetectorRef) private readonly cd: ChangeDetectorRef,
     ) {}
 
     get focused(): boolean {
@@ -161,6 +167,14 @@ export class TuiToolbarNewComponent {
             this.enabled(TuiEditorTool.Img) ||
             this.enabled(TuiEditorTool.HR)
         );
+    }
+
+    get supOrSubEnabled(): boolean {
+        return this.enabled(TuiEditorTool.Sub) || this.enabled(TuiEditorTool.Sup);
+    }
+
+    get colorOrHiliteEnabled(): boolean {
+        return this.enabled(TuiEditorTool.Color) || this.enabled(TuiEditorTool.Hilite);
     }
 
     @HostListener('mousedown', ['$event', '$event.target'])
@@ -247,6 +261,16 @@ export class TuiToolbarNewComponent {
 
     toggleSuperscript() {
         this.editor.toggleSuperscript();
+    }
+
+    changeVisible(isIntersecting: boolean, type: TuiEditorTool | TuiEditorGroupTools) {
+        if (isIntersecting) {
+            this.toolsSetInDropdown.delete(type);
+        } else {
+            this.toolsSetInDropdown.add(type);
+        }
+
+        this.cd.detectChanges();
     }
 
     private addImage(image: string) {

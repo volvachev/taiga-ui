@@ -5,6 +5,7 @@ describe("Editor's toolbar", () => {
     beforeEach(() => {
         cy.goToDemoPage(EDITOR_PAGE_URL);
         cy.hideHeader();
+        cy.hideNavigation();
     });
 
     it("closes tool's dropdown if opened new tool's dropdown", () => {

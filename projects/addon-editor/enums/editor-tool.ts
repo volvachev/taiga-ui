@@ -24,3 +24,8 @@ export enum TuiEditorTool {
     SplitCells = 'splitCells',
     RowsColumnsManaging = 'rowsColumnsManaging',
 }
+
+export enum TuiEditorGroupTools {
+    Format = 'format',
+    NgContent = 'NgContent',
+}

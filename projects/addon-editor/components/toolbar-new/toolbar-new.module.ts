@@ -14,14 +14,16 @@ import {
     TuiTableRowColumnManagerModule,
     TuiTextColorModule,
 } from '@taiga-ui/addon-editor/components/toolbar-tools';
-import {TuiFocusableModule} from '@taiga-ui/cdk';
+import {TuiActiveZoneModule, TuiFocusableModule} from '@taiga-ui/cdk';
 import {
     TuiButtonModule,
     TuiDescribedByModule,
+    TuiDropdownControllerModule,
     TuiHintModule,
     TuiHostedDropdownModule,
 } from '@taiga-ui/core';
 
+import {TuiToolIntersectionDirective} from './toolbar-intersection.directive';
 import {TuiToolbarNavigationManagerDirective} from './toolbar-navigation-manager.directive';
 import {TuiToolbarNewComponent} from './toolbar-new.component';
 import {TuiToolbarToolDirective} from './toolbar-tool.directive';
@@ -46,8 +48,11 @@ import {TuiToolbarToolDirective} from './toolbar-tool.directive';
         TuiTextColorModule,
         TuiHighlightColorModule,
         TuiCodeModule,
+        TuiActiveZoneModule,
+        TuiDropdownControllerModule,
     ],
     declarations: [
+        TuiToolIntersectionDirective,
         TuiToolbarNewComponent,
         TuiToolbarToolDirective,
         TuiToolbarNavigationManagerDirective,
