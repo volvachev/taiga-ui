@@ -27,9 +27,7 @@ import {
 import {
     getFractionPartPadded,
     HINT_CONTROLLER_PROVIDER,
-    NumberFormatSettings,
     TEXTFIELD_CONTROLLER_PROVIDER,
-    TUI_NUMBER_FORMAT,
     TUI_TEXTFIELD_WATCHED_CONTROLLER,
     TuiDecimalT,
     TuiSizeL,
@@ -154,8 +152,6 @@ export class TuiInputSliderComponent
         @Inject(ChangeDetectorRef) changeDetectorRef: ChangeDetectorRef,
         @Inject(TUI_TEXTFIELD_WATCHED_CONTROLLER)
         readonly controller: TuiTextfieldController,
-        @Inject(TUI_NUMBER_FORMAT)
-        protected readonly numberFormat: NumberFormatSettings,
         @Inject(TUI_FROM_TO_TEXTS) readonly fromToTexts$: Observable<[string, string]>,
         @Optional()
         @Inject(TuiNewInputSliderDirective)
